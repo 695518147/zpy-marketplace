@@ -7,11 +7,11 @@
     {
       "name": "zpy-plugin",
       "source": {
-        "type": "git-subdir",
-        "url": "git@github.com:695518147/zpy-marketplace.git",
+        "source": "git-subdir",
+        "url": "https://github.com/695518147/zpy-marketplace.git",
         "path": "zpy-plugin"
       },
-      "description": "全能智能工作流引擎"
+      "description": "全能智能工作流引擎 —— 融合记忆管理、工作流、Agent编排、提示词优化、深度研究"
     }
   ]
 }
