@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "zpy-plugin",
-      "source": "./zpy-plugin",
+      "source": "./plugins/zpy-plugin",
       "description": "全能智能工作流引擎 —— 融合记忆管理、工作流、Agent编排、提示词优化、深度研究"
     }
   ]
