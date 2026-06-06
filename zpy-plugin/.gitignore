@@ -1,0 +1,16 @@
+# 本地设置文件（用户自定义配置）
+.claude/*.local.md
+
+# 依赖
+node_modules/
+dist/
+
+# 日志
+*.log
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 归档（保留历史）
+commands/

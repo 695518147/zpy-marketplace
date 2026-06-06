@@ -1,0 +1,18 @@
+{
+  "name": "zpy-plugin",
+  "version": "1.0.0",
+  "description": "全能智能工作流引擎 —— 融合 Letta 记忆管理、Claude Flow 工作流、多 Agent 编排、提示词优化和 DeerFlow 深度研究五大能力",
+  "author": {
+    "name": "zpy",
+    "url": "https://github.com/zpy"
+  },
+  "license": "MIT",
+  "keywords": [
+    "workflow",
+    "agents",
+    "memory",
+    "prompt-optimization",
+    "deep-research",
+    "orchestration"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "hooks": [
+    {
+      "name": "zpy-session-start",
+      "description": "SessionStart: 加载 zpy 记忆上下文，恢复上次会话状态",
+      "trigger": {
+        "event": "SessionStart"
+      },
+      "prompt": "## zpy 会话初始化\n\n检查是否存在 `~/.claude/memory/session-state.json`，如果存在则读取并恢复上次工作流进度。同时检查 `~/.claude/memory/` 下的归档文件，将最近 3 条归档摘要注入当前上下文。\n\n相关技能：`zpy-memory`、`zpy-workflow`"
+    },
+    {
+      "name": "zpy-decision-capture",
+      "description": "PostToolUse: 检测关键决策或约定，自动提示保存到记忆",
+      "trigger": {
+        "event": "PostToolUse",
+        "conditions": {
+          "toolUse": {
+            "names": ["Write", "Edit", "Bash"],
+            "matchAny": true
+          }
+        }
+      },
+      "prompt": "## 决策捕获检查\n\n在刚刚的 tool 调用中，是否涉及以下场景：\n1. 架构或设计决策（选型、模式、约定）\n2. 配置值变更（端口、密钥路径、URL）\n3. 项目特定的编码约定\n\n如果涉及，提示用户是否保存到记忆（通过 `zpy-memory save`）。仅提示，不强求。"
+    },
+    {
+      "name": "zpy-workflow-persist",
+      "description": "Stop: 会话结束时自动保存工作流状态和工作记忆",
+      "trigger": {
+        "event": "Stop"
+      },
+      "prompt": "## 工作流状态持久化\n\n在会话结束前：\n1. 检查是否有进行中的 `zpy-workflow` 任务\n2. 如果有未完成任务，将当前状态（完成节点、阻塞节点、进度百分比）保存到 `~/.claude/memory/session-state.json`\n3. 如果有最近 10 条对话中的关键决策或发现，追加到 `session-memory.jsonl`\n4. 格式：{\"type\": \"working\", \"content\": \"...\", \"timestamp\": \"...\"}"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "zpy-marketplace",
+  "owner": {
+    "name": "zpy"
+  },
+  "plugins": [
+    {
+      "name": "zpy-plugin",
+      "source": "./zpy-plugin",
+      "description": "全能智能工作流引擎"
+    }
+  ]
+}
