@@ -1,0 +1,13 @@
+{
+  "name": "harness-engineering",
+  "version": "1.1.0",
+  "description": "AI Agent 工程纪律体系 — 7 阶段流水线：会话启动、需求澄清、文档生成、系统调试、代码审查、实现开发、测试工程",
+  "author": {
+    "name": "deusyu",
+    "url": "https://github.com/deusyu/harness-engineering"
+  },
+  "homepage": "https://github.com/deusyu/harness-engineering",
+  "repository": "https://github.com/deusyu/harness-engineering",
+  "license": "MIT",
+  "keywords": ["harness", "engineering", "discipline", "tdd", "code-review", "ai-agent"]
+}

@@ -1,0 +1,96 @@
+# Knowledge Index — 错误沉淀知识索引
+
+本文件是 Harness Engineering 的错误沉淀知识索引，供所有 Skill 查询错误沉淀。
+
+## 索引结构
+
+每个条目包含：
+- `id`: 唯一标识（ks-XXX 格式）
+- `title`: 简短标题
+- `type`: 类型（process/rule/anti-pattern/knowledge）
+- `severity`: 严重度（high/medium/low）
+- `tags`: 标签列表（用于判重）
+- `location`: 沉淀位置
+- `summary`: 摘要描述
+
+## 判重规则
+
+新条目与已有条目 `tags` 重叠 > 50% 视为同类，合并而非新建。
+
+---
+
+## Process 类型（high 严重度沉淀到 SKILL.md HARD GATE）
+
+- id: ks-001
+  title: "文档图表渲染必须用标准脚本"
+  type: process
+  severity: high
+  tags: [document, diagram, script, automation]
+  location: scripts/doc-pipeline.sh
+  summary: "文档图表渲染+替换+转DOCX必须用标准脚本，禁止手动逐个替换"
+
+- id: ks-002
+  title: "修bug必须先复现"
+  type: process
+  severity: high
+  tags: [debug, bug, reproduction, testing]
+  location: skills/harness-systematic-debugging/SKILL.md
+  summary: "修复任何bug前必须先稳定复现，禁止未经验证就猜着改"
+
+---
+
+## Rule 类型（high/medium 严重度沉淀到 rules/）
+
+- id: ks-010
+  title: "测试必须mock外部依赖"
+  type: rule
+  severity: high
+  tags: [testing, mock, unit-test, backend]
+  location: rules/02-development-workflow/01-testing-standards.md
+  summary: "后端单测必须mock数据库、API等外部依赖，禁止mock被测代码本身"
+
+- id: ks-011
+  title: "覆盖率门禁"
+  type: rule
+  severity: high
+  tags: [testing, coverage, gate, quality]
+  location: rules/02-development-workflow/01-testing-standards.md
+  summary: "statement覆盖率≥80%，branch覆盖率≥70%才可合并"
+
+---
+
+## Anti-Pattern 类型（high/medium 沉淀到 knowledge/patterns/）
+
+- id: ks-020
+  title: "跳过brainstorming直接实现"
+  type: anti-pattern
+  severity: high
+  tags: [anti-pattern, design, skip, implementation]
+  location: knowledge/patterns/anti-patterns.md
+  summary: "未经设计评审直接实现，导致返工和不一致"
+
+---
+
+## 三层覆盖
+
+项目 `.harness/` > `~/.claude/harness.local/` > `~/.claude/plugins/harness-engineering/`
+
+---
+
+## 沉淀流程
+
+```
+修复错误
+    ↓
+AI 智能判断是否值得沉淀
+    ├─ 隐含约束/架构盲区/流程违规/重复犯错/修复成本>5min → 询问用户确认沉淀
+    └─ 拼写语法小错/工具失误/已有规则未遵守 → 静默跳过
+    ↓
+用户确认沉淀
+    ↓
+查本文件判重
+    ├─ 同类存在 → 合并更新
+    └─ 新类 → 新建条目
+    ↓
+写入文件 + 更新索引
+```
